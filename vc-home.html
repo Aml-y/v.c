@@ -1,0 +1,235 @@
+
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velocity Click </title>
+ <link rel="icon" href="hamage.png" type="image/png" sizes="20">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+
+
+<style>
+  /* إعدادات عامة */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* شريط التنقل */
+.navbar {
+  width: 100%;
+  background-color: #aaa;
+  overflow: auto;
+}
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+}
+.navbar a:hover {
+  background-color: #000;
+}
+.active {
+  background-color: #4cabaf;
+}
+
+/* حاوية المحتوى */
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* الصورة */
+.img img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 22px;
+}
+.img img:hover {
+  opacity: 0.7;
+}
+
+/* العنوان */
+h2 {
+  font-family: "Cursive";
+  font-size: 40px;
+  color: #009999;
+  text-shadow: 2px 2px 5px #61b7ba;
+  margin: 20px 0;
+}
+
+/* الفقرة */
+.INT p {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff751a;
+  font-family: "Cursive";
+  text-shadow: 2px 2px 5px #61b7ba;
+  margin: 20px 0;
+}
+
+/* أيقونات وسائل التواصل الاجتماعي */
+.icon_socialmedia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+.icon_socialmedia ul {
+  list-style: none;
+  padding: 0;
+}
+.icon_socialmedia ul li {
+  margin: 5px 0;
+}
+.icon_socialmedia ul li a {
+  color: #808080;
+  border-radius: 50%;
+  border: 1px solid #808080;
+  padding: 5px;
+  display: block;
+}
+
+/* زر التشغيل */
+.play-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+}
+.play-button-inner {
+  height: 50px;
+  width: 50px;
+  border: 5px solid transparent;
+  border-radius: 50%;
+  background-image: radial-gradient(circle at top left, #61b7ba, #ff751a);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-button-inner .fa {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* النص الصغير */
+small {
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 25px;
+  color: #808080;
+  letter-spacing: 3px;
+}
+
+/* الروابط */
+a {
+  text-decoration: none;
+  font-size: 17px;
+  color: inherit;
+}
+
+/* التذييل */
+.footer {
+  width: 100%;
+  text-align: center;
+  color: #aaa;
+  font-size: 20px;
+  padding: 25px;
+  margin-top: 60px;
+}
+.footer p {
+  color: #808080;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+  .navbar a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
+
+  .content-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .INT p {
+    font-size: 18px;
+  }
+
+  .play-button {
+    margin: 20px 0;
+  }
+
+  .footer {
+    margin-top: 40px;
+  }
+}
+.play-botton {
+    position: static;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .play-botton-inner {
+    margin: auto;
+  }
+
+  .footer {
+    position: static;
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+  }
+</style>
+	
+</head>
+<body>
+
+<div class="navbar">
+  <a class="active" href="http://127.0.0.1:3000/vc-home.html"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="http://127.0.0.1:3000/vc-sections.html"><i class="fa fa-fw fa-Book"></i> sections</a> 
+  <a href="http://127.0.0.1:3000/vc-quiz.html"><i class="fa fa-fw fa-file"></i> quiz</a>
+  <a href="http://127.0.0.1:3000/vc-Note.html"><i class="fa fa-fw fa-pencil"></i> Note</a> 
+<div class="search-container" >
+    <form action="http://127.0.0.1:3000/vc-sections.html">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form></div></div>
+
+  
+  </div>
+	<div class="img" ><img src="hamage.png" width="500" height="600"  ></div>
+	</div><h2 border: 300px;>Velocity Click </h2>
+	<div class="INT" ><p >Physics is the science of nature and it is the science that aims to understand how the universe around us works, from atoms to giant galaxies. It is concerned with studying basic concepts such as energy, force, velocity, time, mass of materials and their movement. This wepsite covers a collection of laws that help the user to simplify the calculations to solve them, save time and effort. 
+</p></div>
+
+<a href="http://127.0.0.1:3000/vc-sections.html"><div class="play-botton"  ><div class="play-botton-inner" ><i class="fa fa-play" ></i></div><small><b>Let's learn</b></small></div></a>
+
+ <div class="footer">
+  <hr><p><strong><strong>Velocity Click </strong></strong><em>is an advanced calculator,  solves physics formulas in only seconds away.</em></p><img src="Velocity-logo-edited-link.png" width=200px; height=100px; >
+</div>
+
+	</body>
+</html>

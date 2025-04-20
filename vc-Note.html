@@ -1,0 +1,239 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velocity Click Note</title>
+ <link rel="icon" href="Velocity-logo-edited.png" type="image/png" sizes="20">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+ </head>
+
+<style type="text/css">
+
+	body {font-family: Arial, Helvetica, sans-serif; place-items:center; height: 100vh; }
+
+.navbar { width: 100%;background-color: #aaa; overflow: auto;}
+.navbar a {float: left;padding: 12px;color: white;text-decoration: none;font-size: 17px;}.navbar a:hover {background-color: #000;}
+.activee { background-color: #4cabaf;}
+
+.footer  {text-indent: 30px;top: 18%;width:95%; height: 5%;
+ 
+  color: #aaa;
+  text-align: center;
+  font-size: 20px;
+  padding: 25px;margin-top:900px;
+}	.footer p{top: -90%; color: #808080;
+  bottom: 8px;
+  left: 16px;
+  font-size: 18px; 
+  margin-top: 5px; text-align: center;left: 400px;border: 300px; }	
+<!---->
+@media (max-width: 768px) {
+  .navbar a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
+
+  .search-container {
+    width: 100%;
+    float: none;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .img img {
+    width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    font-size: 24px;
+    position: static;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .INT p {
+    position: static;
+    width: 90%;
+    margin: auto;
+    font-size: 18px;
+  }
+
+  .icon_sochalmedia {
+    position: static;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .play-botton {
+    position: static;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .play-botton-inner {
+    margin: auto;
+  }
+
+  .footer {
+    position: static;
+    width: 100%;
+    margin-top: 60px;
+    text-align: center;
+  }
+}
+
+</style>
+    <script type="text/javascript">
+    var canvas, canvasimg, backgroundImage, finalImg;
+    var mouseClicked = false;
+    var prevX = 0;
+    var currX = 0;
+    var prevY = 0;
+    var currY = 0;
+    var fillStyle = "black";
+    var globalCompositeOperation = "source-over";
+    var lineWidth = 2;
+
+    function init() {
+      var imageSrc = '/abstract-geometric-pattern_23-2147508597.jpg'
+      backgroundImage = new Image();
+      backgroundImage.src = imageSrc;
+      canvas = document.getElementById('can');
+      finalImg = document.getElementById('finalImg');
+      canvasimg = document.getElementById('canvasimg');
+      canvas.style.backgroundImage = "url('" + imageSrc + "')";
+      canvas.addEventListener("mousemove", handleMouseEvent);
+      canvas.addEventListener("mousedown", handleMouseEvent);
+      canvas.addEventListener("mouseup", handleMouseEvent);
+      canvas.addEventListener("mouseout", handleMouseEvent);
+    }
+
+    function getColor(btn) {
+      globalCompositeOperation = 'source-over';
+      lineWidth = 2;
+      switch (btn.getAttribute('data-color')) {
+        case "green":
+        fillStyle = "green";
+        break;
+        case "blue":
+        fillStyle = "blue";
+        break;
+        case "red":
+        fillStyle = "red";
+        break;
+        case "yellow":
+        fillStyle = "yellow";
+        break;
+        case "orange":
+        fillStyle = "orange";
+        break;
+        case "black":
+        fillStyle = "black";
+        break;
+        case "eraser":
+        globalCompositeOperation = 'destination-out';
+        fillStyle = "rgba(0,0,0,1)";
+        lineWidth = 14;
+        break;
+      }
+
+    }
+
+    function draw(dot) {
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.globalCompositeOperation = globalCompositeOperation;
+      if(dot){
+        ctx.fillStyle = fillStyle;
+        ctx.fillRect(currX, currY, 2, 2);
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = fillStyle;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+      }
+      ctx.closePath();
+    }
+
+    function erase() {
+      if (confirm("Want to clear")) {
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById("canvasimg").style.display = "none";
+      }
+    }
+
+    function save() {
+      canvas.style.border = "2px solid";
+      canvasimg.width = canvas.width;
+      canvasimg.height = canvas.height;
+      var ctx2 = canvasimg.getContext("2d");
+      // comment next line to save the draw only
+      ctx2.drawImage(backgroundImage, 0, 0);
+      ctx2.drawImage(canvas, 0, 0);
+      finalImg.src = canvasimg.toDataURL();
+      finalImg.style.display = "inline";
+    }
+
+    function handleMouseEvent(e) {
+      if (e.type === 'mousedown') {
+        prevX = currX;
+        prevY = currY;
+        currX = e.offsetX;
+        currY = e.offsetY;
+        mouseClicked = true;
+        draw(true);
+      }
+      if (e.type === 'mouseup' || e.type === "mouseout") {
+        mouseClicked = false;
+      }
+      if (e.type === 'mousemove') {
+        if (mouseClicked) {
+          prevX = currX;
+          prevY = currY;
+          currX = e.offsetX;
+          currY = e.offsetY;
+          draw();
+        }
+      }
+    }
+    </script>
+    <body onload="init()">
+
+      <div><canvas id="can" width="1200" height="500" style="position:absolute;top:20%;left:6%;border:2px solid;background: #f5fbfb;">
+      </canvas></div>
+      <div style="position:absolute;top:100%;left:20%;color:  #003366; font-size: 22px;">Choose Color:</div>
+      <div style="position:absolute;top:100.5%;left:31%;width:20px;height:20px;background:green;" data-color="green" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:100.5%;left:33%;width:20px;height:20px;background:blue;" data-color="blue" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:100.5%;left:35%;width:20px;height:20px;background:red;" data-color="red" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:100.5%;left:37%;width:20px;height:20px;background:yellow;" data-color="yellow" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:100.5%;left:39%;width:20px;height:20px;background:orange;" data-color="orange" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:100.5%;left:41%;width:20px;height:20px;background:black;" data-color="black" onclick="getColor(this)"></div>
+      <div style="position:absolute;top:105.5%;left:20%;color:  #003366; font-size: 22px;">Eraser:</div>
+      <div style="position:absolute;top:105.7%;left:26%;width:19px;height:19px;background:white;border:2px solid;" data-color="eraser" onclick="getColor(this)"></div>
+      <canvas id="canvasimg" style="display:none;" ></canvas>
+      <img id="finalImg" style="position:absolute;top:10%;left:52%;display:none;" >
+      <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:100%;left:8%; font-family: sans-serif;
+  font-size: 20px;background-color:  #4cabaf;color: #fff;border: 0px;border-radius: 3px;padding: 20px;cursor: pointer;margin-bottom: 20px;">
+
+
+      <div class="navbar">
+  <a class="activee" href="http://127.0.0.1:3000/vc-home.html"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="http://127.0.0.1:3000/vc-sections.html"><i class="fa fa-fw fa-Book"></i> sections</a> 
+  <a href="http://127.0.0.1:3000/vc-quiz.html"><i class="fa fa-fw fa-file"></i> quiz</a>
+  <a href="http://127.0.0.1:3000/vc-Note.html"><i class="fa fa-fw fa-pencil"></i> Note</a>
+</div>
+
+<br><h2 style="position:absolute;top:12%;left:6%; color:  #003366;">Draw On Board Using A Mouse</h2>
+
+ <div class="footer">
+  <hr><p><strong><strong>Velocity Click </strong></strong><em>is an advanced calculator,  solves physics formulas in only seconds away.</em></p><img src="Velocity-logo-edited-link.png" width=200px; height=100px; >
+</div>
+    </body>
+    </html>
